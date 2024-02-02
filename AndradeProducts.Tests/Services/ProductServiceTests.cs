@@ -25,7 +25,7 @@ namespace AndradeProducts.Tests.Services
         [Fact]
         public async Task GetProductByIdAsync_IdFound_ReturnProduct()
         {
-            var product = new Product("Shirt", 50, true);
+            var product = new Product("Shirt", 50);
 
             _productRepository.Setup(x => x.GetByIdAsync(productId)).ReturnsAsync(product);
 
@@ -48,9 +48,7 @@ namespace AndradeProducts.Tests.Services
         [Fact]
         public async Task InsertNewProductAsync_AddProductInDatabase()
         {
-            var productRequest = new ProductRequest { IsActive = true, Name = "Shirt", Value = 80};
-
-            var product = new Product("Shirt", 80, true);
+            var productRequest = new NewProductRequest { Name = "Shirt", Value = 80};
 
             string result = await _productService.InsertProductAsync(productRequest);
 
@@ -62,9 +60,9 @@ namespace AndradeProducts.Tests.Services
         [Fact]
         public async Task UpdateProductAsync_IdFound_UpdateProductInDatabase()
         {
-            var productRequest = new ProductRequest { IsActive = false, Name = "T-Shirt", Value = 100 };
+            var productRequest = new ProductUpdateRequest { IsActive = false, Name = "T-Shirt", Value = 100 };
 
-            var product = new Product("Shirt", 80, true);
+            var product = new Product("Shirt", 80);
 
             _productRepository.Setup(x => x.GetByIdAsync(productId)).ReturnsAsync(product);
 
@@ -81,7 +79,7 @@ namespace AndradeProducts.Tests.Services
         [Fact]
         public async Task UpdateProductAsync_IdNotFound_ReturnNotFoundException()
         {
-            var productRequest = new ProductRequest { IsActive = false, Name = "T-Shirt", Value = 100 };
+            var productRequest = new ProductUpdateRequest { IsActive = false, Name = "T-Shirt", Value = 100 };
 
             NotFoundException exception = await Assert.ThrowsAsync<NotFoundException>(() => _productService
             .UpdateProductAsync(productRequest, 1));
@@ -92,7 +90,7 @@ namespace AndradeProducts.Tests.Services
         [Fact]
         public async Task DeleteProductAsync_IdFound_DeleteProductInDatabase()
         {
-            var product = new Product("Shirt", 80, true);
+            var product = new Product("Shirt", 80);
 
             _productRepository.Setup(x => x.GetByIdAsync(productId)).ReturnsAsync(product);
 

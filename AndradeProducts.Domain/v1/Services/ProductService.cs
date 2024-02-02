@@ -36,15 +36,15 @@ namespace Logistics.Domain.Services
 
             return productResponse;
         }
-        public async Task<string> InsertProductAsync(ProductRequest productRequest)
+        public async Task<string> InsertProductAsync(NewProductRequest productRequest)
         {
-            Product product = productRequest.GetProductByProductRequest();
+            Product product = productRequest.GetProductByNewProductRequest();
 
             await _productRepository.AddNewAsync(product);
             return "Product added successfully";
         }
 
-        public async Task<string> UpdateProductAsync(ProductRequest productRequest, int id)
+        public async Task<string> UpdateProductAsync(ProductUpdateRequest productRequest, int id)
         {
             Product product = await _productRepository.GetByIdAsync(id);
 

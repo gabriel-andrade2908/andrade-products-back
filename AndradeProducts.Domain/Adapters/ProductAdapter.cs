@@ -31,9 +31,11 @@ namespace AndradeProducts.Domain.Adapters
             }).AsEnumerable();
         }
 
-        public static Product GetProductByProductRequest(this ProductRequest productRequest)
+        public static Product GetProductByNewProductRequest(this NewProductRequest productRequest)
         {
-            return new Product(productRequest.Name, productRequest.Value, productRequest.IsActive);
+            var product = new Product(productRequest.Name, productRequest.Value);
+            product.SetAsActive();
+            return product;
         }
     }
 }

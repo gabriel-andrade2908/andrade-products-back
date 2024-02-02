@@ -4,7 +4,7 @@ namespace AndradeProducts.Domain.Entities
 {
     public class Product : BaseEntity
     {
-        public Product(string name, decimal value, bool isActive) 
+        public Product(string name, decimal value) 
         {
             Name = name;
             Value = value;

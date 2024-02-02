@@ -43,7 +43,7 @@ namespace Logistics.Application.v1.Controllers
         [HttpPost]
         [SwaggerOperation("Insert new product")]
         [SwaggerResponse(StatusCodes.Status200OK, "Product added successfully", typeof(string))]
-        public async Task<IActionResult> Insertproduct(ProductRequest product)
+        public async Task<IActionResult> Insertproduct(NewProductRequest product)
         {
             return Ok(await _productService.InsertProductAsync(product));
         }
@@ -52,7 +52,7 @@ namespace Logistics.Application.v1.Controllers
         [SwaggerOperation("Update product")]
         [SwaggerResponse(StatusCodes.Status200OK, "Product updated successfully", typeof(string))]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Product not found", typeof(string))]
-        public async Task<IActionResult> Updateproduct(ProductRequest product, int id)
+        public async Task<IActionResult> Updateproduct(ProductUpdateRequest product, int id)
         {
             return Ok(await _productService.UpdateProductAsync(product, id));
         }
